@@ -153,6 +153,54 @@ class BamlSyncClient:
       mdl = create_model("DescribeCharacterReturnType", inner=(types.CharacterDescription, ...))
       return coerce(mdl, raw.parsed())
     
+    def ExtractEvents(
+        self,
+        raw_text: str,
+        baml_options: BamlCallOptions = {},
+    ) -> List[types.Event]:
+      __tb__ = baml_options.get("tb", None)
+      if __tb__ is not None:
+        tb = __tb__._tb
+      else:
+        tb = None
+      __cr__ = baml_options.get("client_registry", None)
+
+      raw = self.__runtime.call_function_sync(
+        "ExtractEvents",
+        {
+          "raw_text": raw_text,
+        },
+        self.__ctx_manager.get(),
+        tb,
+        __cr__,
+      )
+      mdl = create_model("ExtractEventsReturnType", inner=(List[types.Event], ...))
+      return coerce(mdl, raw.parsed())
+    
+    def ExtractJsonFromText(
+        self,
+        input: Union[str, baml_py.Image],
+        baml_options: BamlCallOptions = {},
+    ) -> str:
+      __tb__ = baml_options.get("tb", None)
+      if __tb__ is not None:
+        tb = __tb__._tb
+      else:
+        tb = None
+      __cr__ = baml_options.get("client_registry", None)
+
+      raw = self.__runtime.call_function_sync(
+        "ExtractJsonFromText",
+        {
+          "input": input,
+        },
+        self.__ctx_manager.get(),
+        tb,
+        __cr__,
+      )
+      mdl = create_model("ExtractJsonFromTextReturnType", inner=(str, ...))
+      return coerce(mdl, raw.parsed())
+    
     def ExtractResume(
         self,
         raw_text: str,
@@ -175,6 +223,30 @@ class BamlSyncClient:
         __cr__,
       )
       mdl = create_model("ExtractResumeReturnType", inner=(types.Resume, ...))
+      return coerce(mdl, raw.parsed())
+    
+    def GenerateGraph(
+        self,
+        input: Union[str, baml_py.Image],
+        baml_options: BamlCallOptions = {},
+    ) -> types.CytoscapeJSON:
+      __tb__ = baml_options.get("tb", None)
+      if __tb__ is not None:
+        tb = __tb__._tb
+      else:
+        tb = None
+      __cr__ = baml_options.get("client_registry", None)
+
+      raw = self.__runtime.call_function_sync(
+        "GenerateGraph",
+        {
+          "input": input,
+        },
+        self.__ctx_manager.get(),
+        tb,
+        __cr__,
+      )
+      mdl = create_model("GenerateGraphReturnType", inner=(types.CytoscapeJSON, ...))
       return coerce(mdl, raw.parsed())
     
 
@@ -322,6 +394,72 @@ class BamlStreamClient:
         self.__ctx_manager.get(),
       )
     
+    def ExtractEvents(
+        self,
+        raw_text: str,
+        baml_options: BamlCallOptions = {},
+    ) -> baml_py.BamlSyncStream[List[partial_types.Event], List[types.Event]]:
+      __tb__ = baml_options.get("tb", None)
+      if __tb__ is not None:
+        tb = __tb__._tb
+      else:
+        tb = None
+      __cr__ = baml_options.get("client_registry", None)
+
+      raw = self.__runtime.stream_function_sync(
+        "ExtractEvents",
+        {
+          "raw_text": raw_text,
+        },
+        None,
+        self.__ctx_manager.get(),
+        tb,
+        __cr__,
+      )
+
+      mdl = create_model("ExtractEventsReturnType", inner=(List[types.Event], ...))
+      partial_mdl = create_model("ExtractEventsPartialReturnType", inner=(List[partial_types.Event], ...))
+
+      return baml_py.BamlSyncStream[List[partial_types.Event], List[types.Event]](
+        raw,
+        lambda x: coerce(partial_mdl, x),
+        lambda x: coerce(mdl, x),
+        self.__ctx_manager.get(),
+      )
+    
+    def ExtractJsonFromText(
+        self,
+        input: Union[str, baml_py.Image],
+        baml_options: BamlCallOptions = {},
+    ) -> baml_py.BamlSyncStream[Optional[str], str]:
+      __tb__ = baml_options.get("tb", None)
+      if __tb__ is not None:
+        tb = __tb__._tb
+      else:
+        tb = None
+      __cr__ = baml_options.get("client_registry", None)
+
+      raw = self.__runtime.stream_function_sync(
+        "ExtractJsonFromText",
+        {
+          "input": input,
+        },
+        None,
+        self.__ctx_manager.get(),
+        tb,
+        __cr__,
+      )
+
+      mdl = create_model("ExtractJsonFromTextReturnType", inner=(str, ...))
+      partial_mdl = create_model("ExtractJsonFromTextPartialReturnType", inner=(Optional[str], ...))
+
+      return baml_py.BamlSyncStream[Optional[str], str](
+        raw,
+        lambda x: coerce(partial_mdl, x),
+        lambda x: coerce(mdl, x),
+        self.__ctx_manager.get(),
+      )
+    
     def ExtractResume(
         self,
         raw_text: str,
@@ -349,6 +487,39 @@ class BamlStreamClient:
       partial_mdl = create_model("ExtractResumePartialReturnType", inner=(partial_types.Resume, ...))
 
       return baml_py.BamlSyncStream[partial_types.Resume, types.Resume](
+        raw,
+        lambda x: coerce(partial_mdl, x),
+        lambda x: coerce(mdl, x),
+        self.__ctx_manager.get(),
+      )
+    
+    def GenerateGraph(
+        self,
+        input: Union[str, baml_py.Image],
+        baml_options: BamlCallOptions = {},
+    ) -> baml_py.BamlSyncStream[partial_types.CytoscapeJSON, types.CytoscapeJSON]:
+      __tb__ = baml_options.get("tb", None)
+      if __tb__ is not None:
+        tb = __tb__._tb
+      else:
+        tb = None
+      __cr__ = baml_options.get("client_registry", None)
+
+      raw = self.__runtime.stream_function_sync(
+        "GenerateGraph",
+        {
+          "input": input,
+        },
+        None,
+        self.__ctx_manager.get(),
+        tb,
+        __cr__,
+      )
+
+      mdl = create_model("GenerateGraphReturnType", inner=(types.CytoscapeJSON, ...))
+      partial_mdl = create_model("GenerateGraphPartialReturnType", inner=(partial_types.CytoscapeJSON, ...))
+
+      return baml_py.BamlSyncStream[partial_types.CytoscapeJSON, types.CytoscapeJSON](
         raw,
         lambda x: coerce(partial_mdl, x),
         lambda x: coerce(mdl, x),

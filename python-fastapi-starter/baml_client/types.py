@@ -67,10 +67,38 @@ class Citation(BaseModel):
     relevantTextFromDocument: str
     number: int
 
+class Company(BaseModel):
+    
+    
+    name: str
+
 class Context(BaseModel):
     
     
     documents: List["Document"]
+
+class CytoscapeEdge(BaseModel):
+    
+    
+    data: "CytoscapeEdgeData"
+
+class CytoscapeEdgeData(BaseModel):
+    
+    
+    id: str
+    source: str
+    target: str
+    label: str
+
+class CytoscapeJSON(BaseModel):
+    
+    
+    elements: "Elements"
+
+class CytoscapeNode(BaseModel):
+    
+    
+    data: Dict[str, str]
 
 class Document(BaseModel):
     
@@ -90,6 +118,21 @@ class Education(BaseModel):
     school: str
     degree: str
     year: int
+
+class Elements(BaseModel):
+    
+    
+    nodes: List["CytoscapeNode"]
+    edges: List["CytoscapeEdge"]
+
+class Event(BaseModel):
+    
+    
+    name: str
+    description: str
+    link: str
+    speaker: "Speaker"
+    datetime: str
 
 class Message(BaseModel):
     
@@ -121,6 +164,13 @@ class Score(BaseModel):
     
     year: int
     score: int
+
+class Speaker(BaseModel):
+    
+    
+    name: str
+    title: str
+    company: Optional["Company"] = None
 
 class Spells(BaseModel):
     

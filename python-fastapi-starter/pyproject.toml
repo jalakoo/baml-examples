@@ -14,6 +14,9 @@ fastapi = "^0.115.0"
 uvicorn = {extras = ["standard"], version = "^0.31.0"}
 baml-py = "^0.59.0"
 python-dotenv = "^1.0.1"
+html2text = "^2024.2.26"
+requests = "^2.32.3"
+neo4j = "^5.25.0"
 
 
 [build-system]

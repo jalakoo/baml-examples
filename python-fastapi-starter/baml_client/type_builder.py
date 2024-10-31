@@ -19,7 +19,7 @@ from baml_py.type_builder import FieldType, TypeBuilder as _TypeBuilder, ClassPr
 class TypeBuilder(_TypeBuilder):
     def __init__(self):
         super().__init__(classes=set(
-          ["Answer","BookAnalysis","CharacterDescription","Citation","Context","Document","DynamicOutput","Education","Message","PopularityOverTime","Ranking","Resume","Score","Spells","WordCount",]
+          ["Answer","BookAnalysis","CharacterDescription","Citation","Company","Context","CytoscapeEdge","CytoscapeEdgeData","CytoscapeJSON","CytoscapeNode","Document","DynamicOutput","Education","Elements","Event","Message","PopularityOverTime","Ranking","Resume","Score","Speaker","Spells","WordCount",]
         ), enums=set(
           ["Category","MyEnum","Role",]
         ))
